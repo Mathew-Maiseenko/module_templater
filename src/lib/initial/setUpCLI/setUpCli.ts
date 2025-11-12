@@ -13,8 +13,8 @@ export interface CLIArguments {
 }
 
 export interface CLIOptions {
-  verbose?: boolean;
-  debug?: boolean;
+  // verbose?: boolean;
+  // debug?: boolean;
   var?: string[];
 }
 
@@ -36,8 +36,8 @@ export function setupCLI() {
       'template variable (can be used multiple times)',
       collectVariables
     )
-    .option('-v, --verbose', 'enable verbose output')
-    .option('-d, --debug', 'enable debug mode')
+    // .option('-v, --verbose', 'enable verbose output')
+    // .option('-d, --debug', 'enable debug mode')
     .parse();
 
   const options = program.opts() as CLIOptions;
