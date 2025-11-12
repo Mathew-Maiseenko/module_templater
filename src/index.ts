@@ -1,11 +1,13 @@
 import { checkProjRequiredStruct, setupCLI } from './lib/initial';
-import { getModulesNamesFromConfigDir } from './lib/utils/getModulesListFromConfigDir/getModulesListFromConfigDir';
-import { processModuleTemplate } from './lib/utils/processModuleTemplate/processModuleTemplate';
+import { getModulesNamesFromConfigDir } from './lib/utils/process/getModulesListFromConfigDir/getModulesListFromConfigDir';
+import { processModuleTemplate } from './lib/utils/process/processModuleTemplate/processModuleTemplate';
 
 async function main() {
   const { cli_arguments } = setupCLI();
 
-  const { path, moduleTitle, moduleTypeName } = cli_arguments;
+  const { path, moduleTitle, moduleTypeName, variables } = cli_arguments;
+
+  console.log('Вызвано с аргуметами', cli_arguments);
 
   const isProjectStructValid = checkProjRequiredStruct(path);
   if (!isProjectStructValid) {
@@ -21,7 +23,11 @@ async function main() {
     process.exit(1);
   }
 
-  processModuleTemplate(path, moduleTypeName);
+  const processedFileSystem = processModuleTemplate(
+    path,
+    moduleTypeName,
+    variables
+  );
 }
 
 ///////////////////////////////////////////////
